@@ -1,14 +1,9 @@
 import React from 'react';
 import Svg, {SvgProps, Path} from 'react-native-svg';
 
-export const Check = props => {
+export const Check = (props: SvgProps) => {
   return (
-    <Svg
-      width={28}
-      height={28}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      {...props}>
+    <Svg width={28} height={28} fill="none" {...props}>
       <Path
         fillRule="evenodd"
         clipRule="evenodd"

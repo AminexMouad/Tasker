@@ -1,7 +1,14 @@
 import React, {useState} from 'react';
-import {FlatList, StyleSheet, Text, View, Pressable} from 'react-native';
+import {FlatList, StyleSheet, Pressable} from 'react-native';
 import {Header} from './Header';
 import {Check, UnCheck, Plus} from '../../ui/icons/index';
+import {Text, View} from '../../ui';
+
+type TaskType = {
+  label: string;
+  done: boolean;
+  color: string;
+};
 
 const data = [
   {label: 'Start making a presentation', done: true, color: '#EBEFF5'},
@@ -17,16 +24,30 @@ const data = [
   {label: 'Buy a chocolate for Charlotte', done: false, color: '#B678FF'},
 ];
 
-const TaskItem = ({label, done: d, color}) => {
+const TaskItem = ({label, done: d, color}: TaskType) => {
   const [done, setDone] = useState(d);
 
   return (
     <Pressable onPress={() => setDone(!done)}>
-      <View style={styles.item}>
+      <View flexDirection="row" alignItems="center">
         {done ? <Check style={styles.done} /> : <UnCheck style={styles.done} />}
-        <View style={[styles.itemContent, {opacity: done ? 0.3 : 1}]}>
-          <Text style={styles.label}>{label}</Text>
-          <View style={[styles.circle, {backgroundColor: color}]} />
+        <View
+          flex={1}
+          paddingVertical="l"
+          flexDirection="row"
+          alignItems="center"
+          justifyContent="space-between"
+          borderBottomWidth={1}
+          borderBottomColor="grey"
+          opacity={done ? 0.3 : 1}>
+          <Text variant="subheader">{label}</Text>
+          <View
+            width={12}
+            height={12}
+            borderRadius={12}
+            marginHorizontal="m"
+            style={{backgroundColor: color}}
+          />
         </View>
       </View>
     </Pressable>
@@ -35,7 +56,7 @@ const TaskItem = ({label, done: d, color}) => {
 
 export const Tasks = () => {
   return (
-    <View>
+    <View flex={1}>
       <FlatList
         ListHeaderComponent={() => <Header />}
         data={data}
@@ -43,33 +64,29 @@ export const Tasks = () => {
         keyExtractor={(_, index) => `item-${index}`}
         showsVerticalScrollIndicator={false}
       />
-      <Pressable style={styles.icon}>
-        <Plus />
-      </Pressable>
+      <View
+        position="absolute"
+        bottom={15}
+        right={15}
+        justifyContent="center"
+        alignItems="center"
+        padding="m"
+        backgroundColor="white"
+        borderRadius={50}
+        shadowColor="black"
+        shadowOffset={{width: 0, height: 7}}
+        shadowOpacity={0.43}
+        shadowRadius={9.51}
+        elevation={15}>
+        <Pressable>
+          <Plus />
+        </Pressable>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  item: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  itemContent: {
-    flex: 1,
-    flexDirection: 'row',
-    paddingVertical: 24,
-    alignItems: 'center',
-    borderBottomColor: 'rgba(0,0,0,0.1)',
-    borderBottomWidth: 1,
-  },
-  label: {
-    fontWeight: '700',
-    fontSize: 16,
-    fontFamily: 'Inter',
-    color: '#252A31',
-    flex: 1,
-  },
   done: {
     height: 28,
     width: 28,
@@ -77,31 +94,5 @@ const styles = StyleSheet.create({
     borderColor: '#DADADA',
     borderRadius: 50,
     marginHorizontal: 16,
-  },
-  circle: {
-    width: 12,
-    height: 12,
-    borderRadius: 12,
-    marginHorizontal: 16,
-  },
-  icon: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    position: 'absolute',
-    right: 15,
-    bottom: 44,
-    padding: 15,
-    backgroundColor: '#fff',
-
-    borderRadius: 50,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 7,
-    },
-    shadowOpacity: 0.43,
-    shadowRadius: 9.51,
-
-    elevation: 15,
   },
 });
