@@ -3,7 +3,7 @@ import Svg, {G, Path, SvgProps} from 'react-native-svg';
 
 export const Calendar = (props: SvgProps) => {
   return (
-    <Svg width={24} height={24} fill="none" {...props}>
+    <Svg width={24} height={24} {...props}>
       <G opacity={0.3}>
         <Path
           fillRule="evenodd"

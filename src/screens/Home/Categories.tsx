@@ -20,7 +20,7 @@ const CategoryItem = ({label, total, color}: CategoryType) => {
   return (
     <View
       style={{backgroundColor: color}}
-      padding="s"
+      padding="m"
       paddingRight="xl"
       margin="s"
       borderRadius={8}>
