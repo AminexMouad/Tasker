@@ -13,8 +13,8 @@ export const App = () => {
     <ThemeProvider theme={theme}>
       <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
         {/* <Home /> */}
-        <NewTask />
-        {/* <Login /> */}
+        {/* <NewTask /> */}
+        <Login />
       </SafeAreaView>
     </ThemeProvider>
   );
