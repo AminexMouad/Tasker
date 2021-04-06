@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import {Button, Input, Text, View} from '../../ui';
+import {NavigationProp} from '@react-navigation/native';
 
 type FormData = {
   email: string;
@@ -20,22 +21,24 @@ const validation = {
   },
 };
 
-const Login = () => {
+const Login = ({navigation}: any) => {
   const {
     handleSubmit,
     setValue,
     register,
-    formState: {errors},
+    clearErrors,
+    formState: {errors, isValid},
   } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    navigation.navigate('Home');
   };
 
   useEffect(() => {
     register('email', validation.email);
     register('password', validation.password);
-  }, [register]);
+  }, [register, errors]);
+  console.log(isValid);
 
   return (
     <View flex={1} justifyContent="center" padding="m">
@@ -45,7 +48,10 @@ const Login = () => {
       <View marginVertical="xl">
         <Input
           placeholder="Email"
-          onChangeText={email => setValue('email', email)}
+          onChangeText={email => {
+            clearErrors();
+            setValue('email', email);
+          }}
           error={errors.email}
         />
         <Input
