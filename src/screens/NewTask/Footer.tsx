@@ -16,6 +16,8 @@ export const Footer = () => {
     const currentDate = selectedDate || date;
 
     setDate(currentDate);
+    console.log(currentDate);
+
     setAlarmClicked(false);
   };
 

@@ -3,11 +3,11 @@ import {SafeAreaView} from 'react-native';
 import {AddTaskButton} from './AddTaskButton';
 import {Tasks} from './Tasks';
 
-const Home = () => {
+const Home = ({navigation}: any) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <Tasks />
-      <AddTaskButton />
+      <AddTaskButton onPress={() => navigation.navigate('newTask')} />
     </SafeAreaView>
   );
 };

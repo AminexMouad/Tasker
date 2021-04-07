@@ -1,8 +1,6 @@
 import React, {useEffect} from 'react';
 import {useForm} from 'react-hook-form';
 import {Button, Input, Text, View} from '../../ui';
-import {NavigationProp} from '@react-navigation/native';
-
 type FormData = {
   email: string;
   password: string;

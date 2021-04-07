@@ -7,13 +7,14 @@ import {View} from './View';
 interface Props extends TextInputProps {
   name?: string;
   disabled?: boolean;
+  placeholder?: string;
   label?: string;
   error?: FieldError | undefined;
 }
 
 export const Input = ({placeholder, error, ...props}: Props) => {
   return (
-    <View marginBottom="s">
+    <View>
       <TextInput
         style={[styles.container, error ? styles.errors : {}]}
         {...props}
@@ -28,7 +29,6 @@ export const Input = ({placeholder, error, ...props}: Props) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F0F3F7',
-
     padding: 18,
     borderRadius: 8,
   },

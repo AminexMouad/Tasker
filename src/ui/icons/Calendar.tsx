@@ -1,5 +1,5 @@
 import React from 'react';
-import Svg, {G, Path, SvgProps} from 'react-native-svg';
+import Svg, {G, Path, Rect, SvgProps} from 'react-native-svg';
 
 export const Calendar = (props: SvgProps) => {
   return (
@@ -24,6 +24,18 @@ export const Calendar = (props: SvgProps) => {
           strokeWidth={2}
           strokeLinecap="round"
         />
+      </G>
+    </Svg>
+  );
+};
+
+export const CalendarSmall = (props: SvgProps) => {
+  return (
+    <Svg width={16} height={16} fill="none" {...props}>
+      <G opacity={0.3} stroke="#252A31">
+        <Rect x={2.5} y={2.5} width={11} height={11} rx={1.5} />
+        <Path d="M2.5 5.5h11" strokeLinecap="square" />
+        <Path d="M5.5 1v1.5M10.5 1v1.5" strokeLinecap="round" />
       </G>
     </Svg>
   );
